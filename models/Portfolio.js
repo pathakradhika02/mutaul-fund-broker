@@ -7,6 +7,7 @@ const Portfolio = sequelize.define('Portfolio', {
   fundId: { type: DataTypes.STRING, allowNull: false },
   fundName: { type: DataTypes.STRING, allowNull: false },
   units: { type: DataTypes.FLOAT, allowNull: false },
+  initialValue: { type: DataTypes.FLOAT, allowNull: false },
   currentValue: { type: DataTypes.FLOAT, allowNull: false },
 });
 

@@ -11,7 +11,7 @@ exports.viewPortfolio = async (req, res) => {
 };
 
 exports.addToPortfolio = async (req, res) => {
-  const { userId, fundId, fundName, units, currentValue } = req.body;
+  const { userId, fundId, fundName, units, initialValue, currentValue } = req.body;
   try {
     const checkIfExist = await Portfolio.findOne({ where: { userId, fundId } });
     let portfolio;
@@ -21,7 +21,7 @@ exports.addToPortfolio = async (req, res) => {
       const newCurrentValue = Number(checkIfExist.currentValue) + Number(currentValue);
       portfolio = await Portfolio.update({ units: newUnits, currentValue: newCurrentValue }, { where: { userId, fundId } });
     } else {
-      portfolio = await Portfolio.create({ userId, fundId, fundName, units, currentValue });
+      portfolio = await Portfolio.create({ userId, fundId, fundName, units, currentValue, initialValue });
     };
     return res.status(201).json(portfolio);
   } catch (err) {
